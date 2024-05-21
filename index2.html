@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tariq Moore</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="./assets/css/main2.css">
+    <link rel="icon" type="image/png" href="/assets/favicon.png">
+</head>
+
+<body>
+
+    <!-- header area -->
+    <header id="header">
+        <div class="row m-0">
+            <div class="col-3 bgcolor-black">
+                <nav class="primary-nav navbar-expand-md">
+                    <div class="site-title text-center text-light py-5">
+                        <a href="#" class="navbar-brand font-staat font-size-40"></a>
+                    </div>
+                    <div class="d-flex flex-column">
+                        <a href="#home" class="nav-item nav-link text-white-50 font-os font-size-16 active">Home</a>
+                        <a href="#about_me"
+                            class="nav-item nav-link text-white-50 font-os font-size-16 active">About</a>
+                        <a href="#awards"
+                            class="nav-item nav-link text-white-50 font-os font-size-16 active">Achievements</a>
+                        <a href="#portfolio"
+                            class="nav-item nav-link text-white-50 font-os font-size-16 active">Portfolio</a>
+                        <div class="counter-number nav-item nav-link text-white-50 font-os font-size-16 active">Couldn't
+                            read the counter</div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <button class="toggle-button"><span class="fas fa-bars fa-2x"></span></button>
+    </header>
+    <!-- #header area -->
+
+    <main id="site-main">
+        <div class="row m-0">
+            <div class="col-md-9 offset-md-3 px-0">
+
+                <!-- site-banner area -->
+                <section class="site-banner bg-light" id="home">
+                    <div class="banner-area">
+                        <div class="author text-center">
+                            <div class="author-img"></div>
+                            <h1 class="text-black font-staat font-size-40 text-uppercase py-3">Tariq Moore</h1>
+                            <h5 class="text-black font-ram font-size-27">I'm a <span id="typed"></span></h5>
+                        </div>
+                    </div>
+                </section>
+                <!-- #site-banner area -->
+
+                <!-- about me area -->
+                <section class="about px-4 my-5" id="about_me">
+                    <div class="me py-5">
+                        <h5 class="text-uppercase font-os font-size-16 text-muted">information</h5>
+                        <h1 class="text-uppercase font-staat font-size-34">About Me</h1>
+                    </div>
+                    <div class="row m-0">
+                        <div class="col-sm-5 pl-0">
+                            <img src="./assets/banner.png" alt="profile image" class="img-fluid">
+                        </div>
+                        <div class="col-sm-6">
+                            <h6 class="text-uppercase font-os font-size-16 text-muted">About Me</h6>
+                            <h5 class="font-ram font-size-20 py-2">I'm Tariq Moore & a <span id="typed_2"></span></h5>
+                            <p class="font-ram text-black-50 py-2">
+                                I'm passionate about continuous learning, always eager to master new technologies, tools, and even musical instruments (I currently play seven instruments!). With extensive experience in Amazon Web Services, I can provide clients with excellent support on a variety of technical issues from developing infrastructure to troubleshooting hybrid cloud environments. As a Technical Engineer, I bring a dynamic, goal-oriented approach to my work and excel in engaging with clients at all support levels.
+                            </p>
+                            <div class="d-flex flex-row flex-wrap justify-content-between py-4">
+                                
+                            </div>
+                            <button type="submit" onclick="window.open('/assets/RishabResume.pdf')"
+                                class="btn btn-dark text-uppercase mr-3">Download Resume</button>
+                        </div>
+                    </div>
+                </section>
+                <!-- #about me area -->
+
+                <!-- ability -->
+                <section class="skill px-4 py-5 bg-light" id="services">
+                    <div class="ability py-3">
+                        <h5 class="text-uppercase font-os font-size-16 text-muted">Ability</h5>
+                        <h1 class="text-uppercase font-staat font-size-34">My skills</h1>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 pl-4">
+                            <p class="font-ram font-size-16 text-black-50 pb-3">
+                                I am fluent with HTML,CSS and JavaScript with some experience in Python.
+                                <br>
+                                Have built projects with frameworks & tools like : BootStrap5, Node.JS, Terraform, Docker, and AWS.
+                                <br>
+                                Familiar with GIT/Source control.
+                                </br>
+                                Also have some experience with MySQL, NoSQL, and WordPress
+                            </p>
+                            <ul class="list-inline dev-icons">
+                                <li class="list-inline-item">
+                                    <i class="fab fa-html5"></i>
+                                </li>
+                                <li class="list-inline-item">
+                                    <i class="fab fa-css3-alt"></i>
+                                </li>
+                                <li class="list-inline-item">
+                                    <i class="fab fa-node-js"></i>
+                                </li>
+                                <li class="list-inline-item">
+                                    <i class="fab fa-python"></i>
+                                </li>
+                                <li class="list-inline-item">
+                                    <i class="fab fa-aws"></i>
+                                </li>
+                                <li class="list-inline-item">
+                                    <i class="fab fa-docker"></i>
+                                </li>
+                            </ul>
+                        </div>
+                </section>
+                <!-- #ability -->
+
+
+                <!-- awards -->
+                <section class="awards px-4 py-5" id="awards">
+                    <div class="do py-5">
+                        <h5 class="text-uppercase font-os font-size-16 text-muted">What I have achieved</h5>
+                        <h1 class="text-uppercase font-staat font-size-34"><i class="fas fa-award"></i> Awards &amp;
+                            Certifications</h1>
+                    </div>
+                    <div class="w-100">
+
+                        <ul class="fa-ul mb-0 font-ram font-size-16 text-black-50 pb-3">
+                            <li>
+                                <i class="fa-li fa fa-trophy text-warning"></i>
+                                AWS Certified Cloud Practitioner
+                            </li>
+                            <li>
+                                <i class="fa-li fa fa-trophy text-warning"></i>
+                                Modernizing Medicine Perfect CSat Score Award - 4 Consecutive Months
+                            </li>
+                            <li>
+                                <i class="fa-li fa fa-trophy text-warning"></i>
+                                Broward College - Certified Information Systems Specialist
+                            </li>
+                            <li>
+                                <i class="fa-li fa fa-trophy text-warning"></i>
+                                Broward College - Certified Front-End Web Specialist
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!--<div class="row">
+                        <div class="col-md-4 col-sm-6 mb-4 text-center">
+                            <div class="panel border p-4">
+                                <span class="icon text-secondary"><i class="fas fa-directions fa-3x"></i></span>
+                                <h4 class="font-ram py-4">Art Direction</h4>
+                                <p class="font-ram font-size-16 text-black-50">
+                                    Fusce suscipit, ante a hendrerit thelery ullamcorper, risus nisl cursus purus the
+                                    viverra ante nulla vel justo.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section> -->
+                <!-- #services -->
+
+                <!-- work -->
+                <section class="work py-5 px-4 bg-light" id="portfolio">
+                    <div class="py-3">
+                        <h5 class="text-uppercase font-os font-size-16 text-muted">Portfolio</h5>
+                        <h1 class="text-uppercase font-staat font-size-34">Recent Work</h1>
+                    </div>
+                    <div class="row">
+                        <div class="frame col-xs-2"></div>
+                        <div class="frame col-sm-4 pb-4">
+                            <a href=""><img src="./assets/work/01.png" title="cloud Resume Challenge"
+                                    alt="work1" class="img-fluid"></a>
+                            <div class="details">
+                                <h2>Cloud Resume Challenge</h2>
+                                <p><a href="" title="Live Site"><i
+                                            class="far fa-eye eye"></i></a></p>
+                                <p><a href="" title="Source Code"><i
+                                            class="fab fa-github-square giti"></i></a></p>
+                            </div>
+                        </div>
+                        <div class="frame col-sm-4 pb-4">
+                            <a href=""> <img src="./assets/work/02.png"
+                                    title="Weather Dashboard" alt="work1" class="img-fluid"></a>
+                            <div class="details">
+                                <h2>Weather Dashboard</h2>
+                                <p><a href="" title="Live Site"><i
+                                            class="far fa-eye eye"></i></a>
+                                </p>
+                                <p><a href="" title="Source Code"><i
+                                            class="fab fa-github-square giti"></i></a></p>
+                            </div>
+                        </div>
+                        <div class="frame col-sm-4 pb-4">
+                            <a href="https://blog.rishabkumar.ga"><img src="./assets/work/03.png" alt="work1"
+                                    title="My Blog" class="img-fluid"></a>
+                            <div class="details">
+                                <h2>Project Three</h2>
+                                <p>
+                                    <a href="" title="Live Site">
+                                        <i class="far fa-eye eye"></i>
+                                    </a>
+                                </p>
+                                <p>
+                                    <a href="" title="Source Code"><i class="fab fa-github-square giti"></i>
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- #work -->
+
+
+                <!--footer-->
+                <footer id="footer" class="pt-5 px-3">
+                    <div id="contact_us">
+                        <div class="row bg-light py-5">
+                            <div class="col-sm-4 my-5 text-center">
+                                <h6 class="font-ram font-size-16 text-black-50">&copy;2024 Tariq | All rights reserved
+                                </h6>
+                            </div>
+                            <div class="col-sm-4 my-4 text-center">
+                                <div class="footer-title">
+                                    <p class="description font-os font-size-16 text-black-50 text-uppercase">Made with ❤
+                                    </p>
+                                </div>
+                                <div class="counter-number">Couldn't read the counter</div>
+                            </div>
+                            <div class="social-icons col-sm-4 my-4 text-center">
+                                <a href="https://www.linkedin.com/in/tariq-moore/" target="blank">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                <a href="https://github.com/tariqmoore/" target="blank">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+
+            </div>
+        </div>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js"
+        integrity="sha256-MAgcygDRahs+F/Nk5Vz387whB4kSK9NXlDN3w58LLq0=" crossorigin="anonymous"></script>
+
+    <script src="./vendor/typed/typed.min.js"></script>
+
+    <script src="./index.js"></script>
+</body>
+
+</html>
