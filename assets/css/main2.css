@@ -7,9 +7,9 @@ body{
 
 :root{
     --color-black: #000000;
-    --color-white: #ffffff;
+    --color-white: #F9F7F7;
     --color-border: #ffffff34;
-    --color-blue: #6C63FF;
+    --color-blue: #112D4E;
     --font-staat: 'Staatliches', cursive;
     --font-os:  'Oswald', sans-serif;
     --font-ram: 'Rambla', sans-serif;
@@ -88,7 +88,12 @@ body{
     left: 0 !important;
     width: 1000px !important;
 }
-
+/*Navbar Image Styling*/
+img.navbar-img {
+    width: 200px;
+    height: 200px;
+    margin: auto;
+}
 /* site-main */
 
 .site-banner .banner-area{
@@ -139,9 +144,10 @@ body{
     }
 }
 
-#typed{
-    color: var(--color-blue);
+#typed, #typed_2{
+    color: #3F72AF;
 }
+
 /* #site-main */
 
 
@@ -176,7 +182,7 @@ body{
   }
   
   .dev-icons .list-inline-item :hover {
-    color: purple;
+    color: #7469B6;
   }
   /*icons*/
 
