@@ -59,3 +59,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         });
     });
 });
+
+/*JavaScript Visitor Counter */
+let counter = document.querySelector(".counter-number").innerHTML;
+console.log(counter);
