@@ -7,9 +7,11 @@ body{
 
 :root{
     --color-black: #000000;
-    --color-white: #F9F7F7;
+    --color-white: #F1F6F9;
     --color-border: #ffffff34;
-    --color-blue: #112D4E;
+    --color-blue: #394867;
+    --color-secondary: #F1F6F9;
+    --color-third: #9BA4B4;
     --font-staat: 'Staatliches', cursive;
     --font-os:  'Oswald', sans-serif;
     --font-ram: 'Rambla', sans-serif;
@@ -42,8 +44,15 @@ body{
     font-size: 16px;
 }
 
-.bgcolor-black{
+/*Background Colors*/
+.bgcolor-drkblue{
     background-color: var(--color-blue);
+}
+.bgcolor-secondary{
+    background-color: var(--color-secondary)
+}
+.bgcolor-third{
+    background-color: var(--color-third);
 }
 
 /* #global classes */
@@ -113,12 +122,11 @@ img.navbar-img {
 }
 
 .site-banner .banner-area .author .author-img{
-    width: 240px;
-    height: 240px;
-    border-radius: 50%;
+    width: 220px;
+    height: 220px;
     margin: auto;
-    background: url(./assets/avatar-alt.png) no-repeat;
-    background-size: 110%;
+    background: url(/images/cupofjoe.png) no-repeat;
+    background-size: 100%;
     background-position: 40% 0;
 }
 
