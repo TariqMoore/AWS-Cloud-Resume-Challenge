@@ -40,6 +40,9 @@ body{
 .font-size-27{
     font-size: 27px;
 }
+.font-size-22{
+    font-size: 27px;
+}
 .font-size-20{
     font-size: 20px;
 }
@@ -157,6 +160,11 @@ img.navbar-img {
     }
     #header{
         z-index:0;
+    }
+}
+@media screen and (max-width: 768px){
+    .font-size-22{
+        font-size: 22px;
     }
 }
 
