@@ -10,7 +10,8 @@ resource "aws_dynamodb_table_item" "item1" {
     #Required => DynamoDB uses JSON Representation of a map of attribute name/value pairs, one for each attribute
     item    =   <<ITEM
     {
-        "VisitCounter": {"N": "0"}
+        "VisitCounter": {"N": "1"},
+        "Visits": {"N": "0"}
     }
     ITEM
 }
