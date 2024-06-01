@@ -18,7 +18,7 @@ resource "aws_lambda_function" "visitFunction" {
   source_code_hash  = data.archive_file.zip_the_python_code.output_base64sha256
   function_name     = "visitFunction"
   role              = aws_iam_role.lambda_role.arn
-  handler           = "func.lambda_handler"
+  handler           = "visitFunction.event_handler"
   runtime           = "python3.8"
 }
 /*Creating the AWS Lambda resource with an IAM role
@@ -44,9 +44,9 @@ resource "aws_iam_role" "lambda_role" {
 }
 
 resource "aws_iam_policy" "iam_policy_for_resume_site" {
-  name                =  "aws_iam_policy_for_terraform_resume_site_policy"
-  path                =  "/"
-  description         =  "AWS IAM policy for managing the resume site role"
+  name                   =  "aws_iam_policy_for_terraform_resume_site_policy"
+  path                   =  "/"
+  description            =  "AWS IAM policy for managing the resume site role"
     policy = jsonencode(
       {
         "Version": "2012-10-17",
@@ -64,7 +64,8 @@ resource "aws_iam_policy" "iam_policy_for_resume_site" {
           {
             "Effect" : "Allow",
             "Action" : [
-              "dynamodb:UpdateItem"
+              "dynamodb:UpdateItem",
+              "dynamodb:GetItem"
             ],
             "Resource" : "arn:aws:dynamodb:*:*:table/resume_site_table"
           },
@@ -75,13 +76,107 @@ resource "aws_iam_policy" "iam_policy_for_resume_site" {
 
 /*Attaching policy to role*/
 resource "aws_iam_role_policy_attachment" "attach_iam_policy_to_iam_role" {
-  role = aws_iam_role.lambda_role.name
-  policy_arn = aws_iam_policy.iam_policy_for_resume_site.arn
+  role                    = aws_iam_role.lambda_role.name
+  policy_arn              = aws_iam_policy.iam_policy_for_resume_site.arn
 }
 
-/**/
+/*data resorce putting the function in a zip file for Lambda*/
 data "archive_file" "zip_the_python_code" {
-  type = "zip"
-  source_file = "${path.module}/lambda/visitFunction.py"
-  output_path = "${path.module}/lambda/visitFunction.zip"
+  type                    = "zip"
+  source_file             = "${path.module}/lambda/visitFunction.py"
+  output_path             = "${path.module}/lambda/visitFunction.zip"
 }
+
+/*Creating API Gateway as REST API*/
+resource "aws_api_gateway_rest_api" "Resume_Site_Api" {
+  name                    = "Resume_Site_API"
+  description             = "API triggers from website access" 
+  
+  endpoint_configuration {
+    types = [ "REGIONAL" ]
+  }
+}
+/*Defining API Gateway Access to invoke lambda function*/
+resource "aws_lambda_permission" "apigw" {
+  statement_id  = "AllowAPIGatewayInvoke"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.visitFunction.function_name
+  principal     = "apigateway.amazonaws.com"
+
+  source_arn    = "${aws_api_gateway_rest_api.Resume_Site_Api.execution_arn}/*/*"
+  
+}
+output "base_url" {
+  value = aws_api_gateway_deployment.resume_site.invoke_url
+}
+/*Defining Proxy resource*/
+resource "aws_api_gateway_resource" "proxy" {
+  rest_api_id =  aws_api_gateway_rest_api.Resume_Site_Api.id
+  parent_id   = aws_api_gateway_rest_api.Resume_Site_Api.root_resource_id
+  path_part   = "{proxy+}" //Special path_part value that activates proxy behavior. Means this resource will match any request path
+  
+}
+resource "aws_api_gateway_method" "proxy" {
+  rest_api_id   = aws_api_gateway_rest_api.Resume_Site_Api.id
+  resource_id   = aws_api_gateway_resource.proxy.id
+  http_method   = "ANY"
+  authorization = "NONE"
+}
+resource "aws_api_gateway_method" "proxy_root" {
+  rest_api_id = aws_api_gateway_rest_api.Resume_Site_Api.id
+  resource_id = aws_api_gateway_rest_api.Resume_Site_Api.root_resource_id
+  http_method = "ANY"
+  authorization = "NONE"
+}
+
+
+/*Creating an integration that specifies where incoming reqeusts are routed to.*/
+resource "aws_api_gateway_integration" "lambda" {
+  rest_api_id = aws_api_gateway_rest_api.Resume_Site_Api.id
+  resource_id = aws_api_gateway_method.proxy.resource_id
+  http_method = aws_api_gateway_method.proxy.http_method
+
+  integration_http_method = "POST"
+  type                    = "AWS_PROXY" //AWS_PROXY is an integration type that tells API gateway to call into the api of another aws service, Lambda, to invoke the function
+  uri                     = aws_lambda_function.visitFunction.invoke_arn 
+  
+}
+/*Proxy resource annot match an empty path at the root of the API.
+Adding similar configuration to the root resource built into the REST API object*/
+resource "aws_api_gateway_integration" "lambda_root" {
+  rest_api_id = aws_api_gateway_rest_api.Resume_Site_Api.id
+  resource_id = aws_api_gateway_method.proxy_root.resource_id
+  http_method = aws_api_gateway_method.proxy_root.http_method
+
+  integration_http_method = "POST"
+  type                    = "AWS_PROXY" //AWS_PROXY is an integration type that tells API gateway to call into the api of another aws service, Lambda, to invoke the function
+  uri                     = aws_lambda_function.visitFunction.invoke_arn 
+  
+}
+
+/*Creating API Gateway deployment to activate the above configuration and expose API to a URL that can be used for testing*/
+resource "aws_api_gateway_deployment" "resume_site" {
+  depends_on = [ 
+    aws_api_gateway_integration.lambda, 
+    aws_api_gateway_integration.lambda_root 
+    ]
+
+    rest_api_id = aws_api_gateway_rest_api.Resume_Site_Api.id
+    stage_name = "test"
+  
+}
+
+/*Creating Lambda Function URL*/
+resource "aws_lambda_function_url" "url1" {
+  function_name           = aws_lambda_function.visitFunction.function_name
+  authorization_type      = "NONE"  
+
+  cors {
+    allow_credentials = true
+    allow_origins     = ["*"]
+    allow_methods     = ["*"]
+    allow_headers     = ["date","keep-alive"]
+    expose_headers    = ["keep-alive","date"]
+    max_age           = 86400
+  }
+} 

@@ -13,5 +13,19 @@ def event_handler(event, context):
         ExpressionAttributeValues={':val': 1},
         ReturnValues="UPDATED_NEW"
     )
+    response = table.get_item(
+        Key={'VisitCounter': item_searched}
+    )
+    
     visits = response['Item']['Visits']
-    return visits
+    visitStr = str(visits)
+    
+    res = {
+        "statusCode": 200,
+        "data": visits,
+        "headers": {
+            "Content-Type": "*/*"
+        },
+        "body":"Hello, " + visitStr + " people have visited!"
+    }
+    return res
