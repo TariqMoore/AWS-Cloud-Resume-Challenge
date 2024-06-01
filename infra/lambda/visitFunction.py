@@ -1,6 +1,15 @@
 import json
 import boto3
 
+from decimal import Decimal
+
+#Helper function created to convert Decimal to JSON serializable
+class DecimalEncoder(json.JSONEncoder):
+  def default(self, obj):
+    if isinstance(obj, Decimal):
+      return str(obj)
+    return json.JSONEncoder.default(self, obj)
+    
 # Get the service resource.
 dynamodb = boto3.resource('dynamodb')
 table = dynamodb.Table('resume_site_table')
@@ -18,14 +27,13 @@ def event_handler(event, context):
     )
     
     visits = response['Item']['Visits']
-    visitStr = str(visits)
     
+    #Created response variable to return statusCode, and visit count
     res = {
         "statusCode": 200,
-        "data": visits,
         "headers": {
-            "Content-Type": "*/*"
+            "Content-Type": "application/json"
         },
-        "body":"Hello, " + visitStr + " people have visited!"
+        "body": json.dumps(visits, cls=DecimalEncoder)
     }
     return res
