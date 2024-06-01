@@ -173,7 +173,7 @@ resource "aws_lambda_function_url" "url1" {
 
   cors {
     allow_credentials = true
-    allow_origins     = ["*"]
+    allow_origins     = ["https://d1lsnummjxb5l2.cloudfront.net"]
     allow_methods     = ["*"]
     allow_headers     = ["date","keep-alive"]
     expose_headers    = ["keep-alive","date"]
