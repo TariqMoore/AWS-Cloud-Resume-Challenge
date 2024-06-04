@@ -61,5 +61,14 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 /*JavaScript Visitor Counter */
-let counter = document.querySelector(".counter-number").innerHTML;
-console.log(counter);
+let counter = document.querySelectorAll(".counter-number");
+async function visitCounter(){
+    let response = await fetch(
+        "https://6b3yodlwsacqadv4mvip4r25pq0qcxes.lambda-url.us-east-1.on.aws/"
+    )
+    let data = await response.json();
+    for (var element of counter){
+        element.innerHTML = "You are visitor "+ data + " :)"
+    }
+}
+visitCounter();
