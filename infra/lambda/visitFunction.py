@@ -13,7 +13,7 @@ class DecimalEncoder(json.JSONEncoder):
 # Get the service resource.
 dynamodb = boto3.resource('dynamodb')
 table = dynamodb.Table('resume_site_table')
-item_searched = 1
+item_searched = 1 #Refers to the primary key row (ID : 1)
 def event_handler(event, context):
 
     response = table.update_item(
@@ -31,8 +31,9 @@ def event_handler(event, context):
     #Created response variable to return statusCode, and visit count
     res = {
         "statusCode": 200,
-        "headers": {
-            "Content-Type": "application/json"
+        "headers": { #Returning headers through the lambda function. Function is setup with proxy integration in Terraform. 
+            "Content-Type": "application/json", #Returning Json to browser
+            "Access-Control-Allow-Origin": "*" #Allows cross origin resource sharing. Important since we setup lambda as a proxy.
         },
         "body": json.dumps(visits, cls=DecimalEncoder)
     }
