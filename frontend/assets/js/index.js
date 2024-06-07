@@ -64,7 +64,8 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 let counter = document.querySelectorAll(".counter-number");
 async function visitCounter(){
     let response = await fetch(
-        "https://6b3yodlwsacqadv4mvip4r25pq0qcxes.lambda-url.us-east-1.on.aws/"
+        //"https://6b3yodlwsacqadv4mvip4r25pq0qcxes.lambda-url.us-east-1.on.aws/"
+        "https://6qmxrx2gr5.execute-api.us-east-1.amazonaws.com/test"
     )
     let data = await response.json();
     for (var element of counter){
