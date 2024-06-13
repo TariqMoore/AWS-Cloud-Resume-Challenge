@@ -24,5 +24,5 @@ What is Cloud Resume Challenge? - [The Cloud Resume Challenge](https://cloudresu
 - [What is the Cloud Resume Challenge?](https://dev.to/tariq_moore/aws-cloud-resume-challenge-2676)
  
 ## Author
-- LinkedIn: [Tariq Moore](https://linked.com/in/tariq-moore)
+- LinkedIn: [Tariq Moore](https://linkedin.com/in/tariq-moore)
   
